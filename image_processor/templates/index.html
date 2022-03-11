@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "header.html" %}
+
+<body>
+
+    {# if an error occurs while uploading, let the user know #}
+    {% if errors %}
+        {% for field, errs in errors.items %}
+            {% for error in errs %}
+                <h1>{{ error }}</h1>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" action="/" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1>Select an image (JPG, JPEG, BMP, PNG):</h1> {{ form.imgFile }}
+        <h1>Select a filter: </h1> {{ form.filter }}
+        <br>
+        <br>
+        <button type="submit">Apply Filter</button>
+    </form>
+
+    {# show processed image to the user and allow them to download it #}
+    <div style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+        {% if image %}
+            <img style="max-width:700px;" src="{{ image }}" alt="image with filter applied">
+            <br>
+            <a download href="{{ image }}">
+                <button type="submit">Download</button>
+            </a>
+        {% endif %}
+    </div>
+
+</body>
+
+{%  include "footer.html" %}
+
+</html>
+
