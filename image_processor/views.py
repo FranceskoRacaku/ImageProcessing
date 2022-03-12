@@ -83,7 +83,7 @@ def s3_upload(file_name: str):
 
      try:
          with open(file_name, "rb") as file_content:
-             s3.Bucket("mr-image-proc-bucket").put_object(Key=file_name, Body=file_content)
+             s3.Bucket("francbucket").put_object(Key=file_name, Body=file_content)
 
          os.remove(file_name)  # once successfully uploaded, remove local copy
          return True
@@ -98,7 +98,7 @@ def s3_download(key: str):
         s3 = boto3.resource("s3")
 
         tmp_name = "-s3.".join(key.split("."))
-        s3.Object("mr-image-proc-bucket", key).download_file(tmp_name)
+        s3.Object("francbucket", key).download_file(tmp_name)
         return tmp_name
 
     except Exception as e:

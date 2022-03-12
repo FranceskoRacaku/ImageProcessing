@@ -121,4 +121,4 @@ USE_TZ = True
 
 STATIC_URL = '/main/templates/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = 'Users/Franc/Desktop/dataComp/proj1/cloud-computing-image-processing-app-main/media/'
+MEDIA_URL = 'Users/Franc/Desktop/dataComp/proj1/image-proc/media/'
