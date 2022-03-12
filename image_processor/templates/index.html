@@ -1,9 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="
+width: 100vw;
+height: 45vh;
+position: absolute;
+top: 0;
+left: 0;
+background-image: linear-gradient(to bottom, orange, white);
+z-index: -10;">
 
 {% include "header.html" %}
 
-<body>
+
+<body style="
+  width: 100vw;
+  height: 45vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(to bottom, orange, white);
+  z-index: -10;">
 
     {# if an error occurs while uploading, let the user know #}
     {% if errors %}
@@ -14,19 +29,37 @@
         {% endfor %}
     {% endif %}
 
+    <div class = "left" style="position: absolute;
+    padding-top: 20px;
+    margin-top: 320px;
+    margin-left: 75px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 414px;
+    width: 400px;
+    background-color: bisque;
+    margin-right: auto;
+    border-bottom: 1px solid black;">
     <form method="POST" action="/" enctype="multipart/form-data">
         {% csrf_token %}
-        <h1>Select an image (JPG, JPEG, BMP, PNG):</h1> {{ form.imgFile }}
+        <h1 style="color: rgb(10, 9, 6); ">Select an image (JPG, JPEG, BMP, PNG):</h1> {{ form.imgFile }}
         <h1>Select a filter: </h1> {{ form.filter }}
         <br>
         <br>
         <button type="submit">Apply Filter</button>
     </form>
-
+</div>
     {# show processed image to the user and allow them to download it #}
-    <div style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+    <div class ="right" style="position: absolute;
+    padding-top: 20px;
+    left: 35%;
+    padding-right: 10px;
+    
+    margin-left: auto;
+    resize: auto;
+    border-bottom: 1px solid black;">
         {% if image %}
-            <img style="max-width:700px;" src="{{ image }}" alt="image with filter applied">
+            <img style="width:500px; max-height: 750px; margin-top: 170px;" src="{{ image }}" alt="image with filter applied">
             <br>
             <a download href="{{ image }}">
                 <button style= "height: 50px; position: relative; margin-bottom: 50px;" type="submit">Download</button>
